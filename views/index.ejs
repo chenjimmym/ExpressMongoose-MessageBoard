@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h1>The Dojo Message Board</h1>
+        <hr>
+        <form action="/addPost" method="post">
+            Name: <input type="text" name="name"><br><br>
+            Message: <input type="text" name="message"><br><br>
+            <input type="submit" value="Post Message">
+        </form>
+        <hr>
+        <% for (var i in posts){ %>
+            <h3>Name: <%= posts[i].name %></h3>
+            <h3>Message: <%= posts[i].message %></h3>
+            <% for (var j = 0; j < posts[i].comments.length; j++){ %>
+            <p><%= posts[i].comments[j].message %> - <%= posts[i].comments[j].name %></p>
+            <% } %>
+            <form action="/addComment/<%= posts[i]._id %>" method="post">
+                Name: <input type="text" name="name"><br><br>
+                Message: <input type="text" name="message"><br><br>
+                <input type="submit" value="Post Comment">
+            </form>
+            <br>
+        <% } %>
+    </body>
+</html>
