@@ -17,8 +17,8 @@
         <% for (var i in posts){ %>
             <h3>Name: <%= posts[i].name %></h3>
             <h3>Message: <%= posts[i].message %></h3>
-            <% for (var j = 0; j < posts[i].comments.length; j++){ %>
-            <p><%= posts[i].comments[j].message %> - <%= posts[i].comments[j].name %></p>
+            <% for (var j of posts[i].comments){ %>
+            <p><%= j.message %> - <%= j.name %></p>
             <% } %>
             <form action="/addComment/<%= posts[i]._id %>" method="post">
                 Name: <input type="text" name="name"><br><br>
